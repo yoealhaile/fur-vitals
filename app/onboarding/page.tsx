@@ -212,6 +212,18 @@ export default function OnboardingPage() {
 
     completeOnboarding();
     
+    // Save to localStorage for persistence across sessions
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('onboardingComplete', 'true');
+      localStorage.setItem('furvitals_user', JSON.stringify({
+        name: userName,
+        email: userEmail,
+        healthGoals,
+        connectedTrackers: connectedTrackers,
+      }));
+      localStorage.setItem('connectedTrackers', JSON.stringify(connectedTrackers));
+    }
+    
     // Show email verification popup only once
     if (!emailSent) {
       setEmailSent(true);

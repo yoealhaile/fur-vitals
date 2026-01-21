@@ -25,15 +25,41 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  // Demo Mode: Default to Malcolm the Golden Retriever for external testers
-  const [user, setUser] = useState<UserData | null>({
-    name: 'Demo User',
-    email: 'demo@furvitals.app',
-    healthGoals: ['vitals', 'longevity'],
+  // Initialize state from localStorage or use demo mode as fallback
+  const [user, setUser] = useState<UserData | null>(() => {
+    if (typeof window !== 'undefined') {
+      const savedUser = localStorage.getItem('furvitals_user');
+      if (savedUser) return JSON.parse(savedUser);
+    }
+    // Demo Mode fallback: Malcolm the Golden Retriever for external testers
+    return {
+      name: 'Demo User',
+      email: 'demo@furvitals.app',
+      healthGoals: ['vitals', 'longevity'],
+    };
   });
+  
   const [dogData, setDogData] = useState<DogData>(mockSensorsRaw as DogData);
-  const [isOnboarded, setIsOnboarded] = useState(true); // Demo mode: pre-onboarded
-  const [connectedTrackers, setConnectedTrackers] = useState<string[]>(['fitbark', 'tractive']);
+  
+  const [isOnboarded, setIsOnboarded] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      const onboardingComplete = localStorage.getItem('onboardingComplete');
+      // If localStorage has explicit value, use it
+      if (onboardingComplete !== null) {
+        return onboardingComplete === 'true';
+      }
+    }
+    // Demo mode: Show Malcolm immediately for external visitors
+    return true;
+  });
+  
+  const [connectedTrackers, setConnectedTrackers] = useState<string[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('connectedTrackers');
+      if (saved) return JSON.parse(saved);
+    }
+    return ['fitbark', 'tractive']; // Demo mode default
+  });
 
   const updateDogData = (updates: Partial<DogData>) => {
     setDogData((prev) => ({ ...prev, ...updates }));
