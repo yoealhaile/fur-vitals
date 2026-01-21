@@ -1,0 +1,688 @@
+[
+  {
+    "breed": "French Bulldog",
+    "size_category": "Small",
+    "lifespan_range": [10, 12],
+    "energy_level": 3,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Brachycephalic breed - monitor respiratory rate closely",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["BOAS (Respiratory)", "IVDD (Spine)", "Skin Allergies", "Heat Stroke"]
+  },
+  {
+    "breed": "Labrador Retriever",
+    "size_category": "Large",
+    "lifespan_range": [10, 14],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "High-energy breed - needs substantial daily exercise",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Hip/Elbow Dysplasia", "Obesity", "Exercise Induced Collapse", "Bloat"]
+  },
+  {
+    "breed": "Golden Retriever",
+    "size_category": "Large",
+    "lifespan_range": [10, 12],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "Prone to cancer - monitor for unusual masses or lethargy",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Hemangiosarcoma", "Lymphoma", "Hip Dysplasia", "Heart Stenosis"]
+  },
+  {
+    "breed": "German Shepherd",
+    "size_category": "Large",
+    "lifespan_range": [9, 13],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "Working breed - requires mental and physical stimulation",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Degenerative Myelopathy", "Bloat", "Hip Dysplasia", "Exocrine Pancreatic Insufficiency"]
+  },
+  {
+    "breed": "Poodle (Standard)",
+    "size_category": "Large",
+    "lifespan_range": [12, 15],
+    "energy_level": 4,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Intelligent breed - mental stimulation important",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Addison's Disease", "Sebaceous Adenitis", "Bloat", "Epilepsy"]
+  },
+  {
+    "breed": "Dachshund",
+    "size_category": "Small",
+    "lifespan_range": [12, 16],
+    "energy_level": 3,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Long spine - limit jumping and stair climbing",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["IVDD", "Diabetes", "Obesity", "Cushing's Disease"]
+  },
+  {
+    "breed": "Rottweiler",
+    "size_category": "Large",
+    "lifespan_range": [8, 10],
+    "energy_level": 4,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Prone to bone cancer - monitor for limping or pain",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Osteosarcoma", "Heart Stenosis", "ACL Tears", "Bloat"]
+  },
+  {
+    "breed": "Beagle",
+    "size_category": "Medium",
+    "lifespan_range": [12, 15],
+    "energy_level": 4,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Scent hound - requires secure outdoor space",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["Hypothyroidism", "Epilepsy", "Intervertebral Disc Disease", "Cherry Eye"]
+  },
+  {
+    "breed": "Chihuahua",
+    "size_category": "Toy",
+    "lifespan_range": [14, 16],
+    "energy_level": 2,
+    "activity_budget_mins": 30,
+    "vitals_logic": "Toy breed - fragile, monitor for hypoglycemia",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Mitral Valve Disease", "Patellar Luxation", "Hypoglycemia", "Hydrocephalus"]
+  },
+  {
+    "breed": "Boxer",
+    "size_category": "Large",
+    "lifespan_range": [10, 12],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "Heart disease prone - monitor respiratory rate",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Boxer Cardiomyopathy", "Cancer", "Degenerative Myelopathy", "Aortic Stenosis"]
+  },
+  {
+    "breed": "Yorkshire Terrier",
+    "size_category": "Toy",
+    "lifespan_range": [13, 16],
+    "energy_level": 3,
+    "activity_budget_mins": 30,
+    "vitals_logic": "Small breed - prone to tracheal issues",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Liver Shunts", "Tracheal Collapse", "Hypoglycemia", "Legg-Calve-Perthes"]
+  },
+  {
+    "breed": "Siberian Husky",
+    "size_category": "Large",
+    "lifespan_range": [12, 14],
+    "energy_level": 5,
+    "activity_budget_mins": 120,
+    "vitals_logic": "Working breed - extremely high exercise needs",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Zinc Deficiency", "Progressive Retinal Atrophy", "Hip Dysplasia", "Hypothyroidism"]
+  },
+  {
+    "breed": "Great Dane",
+    "size_category": "Giant",
+    "lifespan_range": [7, 10],
+    "energy_level": 3,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Giant breed - risk of bloat, feed multiple small meals",
+    "vitals_baseline": {
+      "min_rhr": 50,
+      "max_rhr": 90,
+      "avg_srr": 15
+    },
+    "common_risks": ["Bloat", "Dilated Cardiomyopathy", "Osteosarcoma", "Wobbler Syndrome"]
+  },
+  {
+    "breed": "Cavalier King Charles",
+    "size_category": "Small",
+    "lifespan_range": [9, 14],
+    "energy_level": 3,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Heart disease prone - monitor for coughing",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Mitral Valve Disease", "Syringomyelia", "Obesity", "Dry Eye"]
+  },
+  {
+    "breed": "Doberman Pinscher",
+    "size_category": "Large",
+    "lifespan_range": [10, 13],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "Athletic breed - high cardiac monitoring needs",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["DCM (Heart)", "Von Willebrand's", "Wobbler Syndrome", "Bloat"]
+  },
+  {
+    "breed": "Australian Shepherd",
+    "size_category": "Medium",
+    "lifespan_range": [12, 15],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "Herding breed - requires intensive exercise",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["MDR1 Drug Sensitivity", "Cataracts", "Epilepsy", "Hip Dysplasia"]
+  },
+  {
+    "breed": "Miniature Schnauzer",
+    "size_category": "Small",
+    "lifespan_range": [12, 15],
+    "energy_level": 4,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Prone to pancreatitis - low-fat diet recommended",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Pancreatitis", "Diabetes", "Liver Shunts", "Cataracts"]
+  },
+  {
+    "breed": "Pembroke Welsh Corgi",
+    "size_category": "Small",
+    "lifespan_range": [12, 13],
+    "energy_level": 4,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Long body - limit jumping to prevent IVDD",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["IVDD", "Degenerative Myelopathy", "Obesity", "PDA (Heart)"]
+  },
+  {
+    "breed": "Bernese Mountain Dog",
+    "size_category": "Giant",
+    "lifespan_range": [7, 10],
+    "energy_level": 4,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Giant breed - cancer surveillance critical",
+    "vitals_baseline": {
+      "min_rhr": 50,
+      "max_rhr": 90,
+      "avg_srr": 15
+    },
+    "common_risks": ["Histiocytic Sarcoma", "Hip/Elbow Dysplasia", "Bloat", "Heart Disease"]
+  },
+  {
+    "breed": "Shih Tzu",
+    "size_category": "Small",
+    "lifespan_range": [10, 18],
+    "energy_level": 2,
+    "activity_budget_mins": 30,
+    "vitals_logic": "Brachycephalic - avoid heat and overexertion",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Brachycephalic Syndrome", "Luxating Patella", "Dry Eye", "Bladder Stones"]
+  },
+  {
+    "breed": "Boston Terrier",
+    "size_category": "Small",
+    "lifespan_range": [11, 13],
+    "energy_level": 3,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Brachycephalic - heat sensitive",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Cataracts", "Deafness", "Brachycephalic Syndrome", "Allergies"]
+  },
+  {
+    "breed": "Havanese",
+    "size_category": "Small",
+    "lifespan_range": [14, 16],
+    "energy_level": 3,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Small companion breed - moderate exercise needs",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Heart Murmurs", "Legg-Calve-Perthes", "Cataracts", "Deafness"]
+  },
+  {
+    "breed": "English Mastiff",
+    "size_category": "Giant",
+    "lifespan_range": [6, 10],
+    "energy_level": 2,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Giant breed - short lifespan, monitor heart health",
+    "vitals_baseline": {
+      "min_rhr": 50,
+      "max_rhr": 90,
+      "avg_srr": 15
+    },
+    "common_risks": ["Bloat", "DCM (Heart)", "Hip Dysplasia", "Entropion"]
+  },
+  {
+    "breed": "Vizsla",
+    "size_category": "Medium",
+    "lifespan_range": [12, 14],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "High-energy hunting breed",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["Lymphoma", "Hip Dysplasia", "Epilepsy", "Sebaceous Adenitis"]
+  },
+  {
+    "breed": "Pug",
+    "size_category": "Small",
+    "lifespan_range": [13, 15],
+    "energy_level": 2,
+    "activity_budget_mins": 30,
+    "vitals_logic": "Brachycephalic - avoid heat, monitor breathing",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["PDE (Encephalitis)", "BOAS", "Obesity", "Skin Fold Infections"]
+  },
+  {
+    "breed": "Cane Corso",
+    "size_category": "Large",
+    "lifespan_range": [9, 12],
+    "energy_level": 4,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Guardian breed - needs structured exercise",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Hip Dysplasia", "Entropion", "Bloat", "Heart Disease"]
+  },
+  {
+    "breed": "Border Collie",
+    "size_category": "Medium",
+    "lifespan_range": [12, 15],
+    "energy_level": 5,
+    "activity_budget_mins": 120,
+    "vitals_logic": "Most energetic breed - requires intensive mental/physical work",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["Collie Eye Anomaly", "Epilepsy", "Hip Dysplasia", "TNS"]
+  },
+  {
+    "breed": "Bichon Frise",
+    "size_category": "Small",
+    "lifespan_range": [14, 15],
+    "energy_level": 3,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Small companion breed - prone to bladder issues",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Bladder Stones", "Allergies", "Patellar Luxation", "Cataracts"]
+  },
+  {
+    "breed": "Rhodesian Ridgeback",
+    "size_category": "Large",
+    "lifespan_range": [10, 12],
+    "energy_level": 4,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Athletic hunting breed - high exercise needs",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Dermoid Sinus", "Hip/Elbow Dysplasia", "Hypothyroidism", "Bloat"]
+  },
+  {
+    "breed": "Belgian Malinois",
+    "size_category": "Large",
+    "lifespan_range": [14, 16],
+    "energy_level": 5,
+    "activity_budget_mins": 120,
+    "vitals_logic": "Working breed - extreme exercise and mental stimulation required",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Hip Dysplasia", "Pannus (Eyes)", "Elbow Dysplasia", "Thyroid Issues"]
+  },
+  {
+    "breed": "Shiba Inu",
+    "size_category": "Medium",
+    "lifespan_range": [13, 16],
+    "energy_level": 4,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Independent breed - moderate exercise needs",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["Allergies", "Glaucoma", "Hip Dysplasia", "Patellar Luxation"]
+  },
+  {
+    "breed": "Maltese",
+    "size_category": "Toy",
+    "lifespan_range": [12, 15],
+    "energy_level": 2,
+    "activity_budget_mins": 30,
+    "vitals_logic": "Toy breed - fragile, minimal exercise needs",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Liver Shunts", "White Dog Shaker Syndrome", "Collapsed Trachea", "Heart Murmurs"]
+  },
+  {
+    "breed": "English Springer Spaniel",
+    "size_category": "Medium",
+    "lifespan_range": [12, 14],
+    "energy_level": 5,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Sporting breed - active lifestyle required",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["Ear Infections", "PRA (Eyes)", "Hip Dysplasia", "Phosphofructokinase Deficiency"]
+  },
+  {
+    "breed": "Brittany",
+    "size_category": "Medium",
+    "lifespan_range": [12, 14],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "Bird dog - high energy and stamina",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["Hip Dysplasia", "Epilepsy", "Hypothyroidism", "Cataracts"]
+  },
+  {
+    "breed": "English Cocker Spaniel",
+    "size_category": "Medium",
+    "lifespan_range": [12, 14],
+    "energy_level": 4,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Sporting breed - moderate exercise needs",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["Ear Infections", "PRA (Eyes)", "Hip Dysplasia", "Familial Nephropathy"]
+  },
+  {
+    "breed": "Weimaraner",
+    "size_category": "Large",
+    "lifespan_range": [10, 13],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "High-energy hunting breed - prone to bloat",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Bloat", "Hip Dysplasia", "Hypertrophic Osteodystrophy", "Von Willebrand's"]
+  },
+  {
+    "breed": "West Highland Terrier",
+    "size_category": "Small",
+    "lifespan_range": [13, 15],
+    "energy_level": 4,
+    "activity_budget_mins": 45,
+    "vitals_logic": "Terrier - moderate activity with skin issue monitoring",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Pulmonary Fibrosis", "Skin Issues", "Addison's Disease", "Legg-Calve-Perthes"]
+  },
+  {
+    "breed": "Collie",
+    "size_category": "Large",
+    "lifespan_range": [12, 14],
+    "energy_level": 4,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Herding breed - MDR1 drug sensitivity awareness critical",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Collie Eye Anomaly", "MDR1 Sensitivity", "Dermatomyositis", "Bloat"]
+  },
+  {
+    "breed": "Dalmatian",
+    "size_category": "Large",
+    "lifespan_range": [11, 13],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "High-energy breed - unique metabolism requires low-purine diet",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Urinary Stones", "Deafness", "Hip Dysplasia", "Iris Sphincter Dysplasia"]
+  },
+  {
+    "breed": "Papillon",
+    "size_category": "Toy",
+    "lifespan_range": [14, 16],
+    "energy_level": 4,
+    "activity_budget_mins": 30,
+    "vitals_logic": "Toy breed with high energy - surprisingly active",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Patellar Luxation", "PRA (Eyes)", "Collapsed Trachea", "Hypoglycemia"]
+  },
+  {
+    "breed": "Newfoundland",
+    "size_category": "Giant",
+    "lifespan_range": [9, 10],
+    "energy_level": 3,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Giant breed - heart disease monitoring critical",
+    "vitals_baseline": {
+      "min_rhr": 50,
+      "max_rhr": 90,
+      "avg_srr": 15
+    },
+    "common_risks": ["Subaortic Stenosis", "Cystinuria", "Hip/Elbow Dysplasia", "Bloat"]
+  },
+  {
+    "breed": "Irish Wolfhound",
+    "size_category": "Giant",
+    "lifespan_range": [6, 8],
+    "energy_level": 3,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Giant breed - shortest lifespan, cardiac monitoring essential",
+    "vitals_baseline": {
+      "min_rhr": 50,
+      "max_rhr": 90,
+      "avg_srr": 15
+    },
+    "common_risks": ["DCM (Heart)", "Bone Cancer", "Bloat", "Liver Shunts"]
+  },
+  {
+    "breed": "Jack Russell Terrier",
+    "size_category": "Small",
+    "lifespan_range": [13, 16],
+    "energy_level": 5,
+    "activity_budget_mins": 60,
+    "vitals_logic": "High-energy terrier - needs extensive exercise despite size",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Lens Luxation", "Patellar Luxation", "Deafness", "Ataxia"]
+  },
+  {
+    "breed": "Samoyed",
+    "size_category": "Large",
+    "lifespan_range": [12, 14],
+    "energy_level": 4,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Working breed - kidney disease screening important",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Glaucoma", "Hip Dysplasia", "Samoyed Hereditary Glomerulopathy (Kidney)", "Diabetes"]
+  },
+  {
+    "breed": "Bull Terrier",
+    "size_category": "Medium",
+    "lifespan_range": [12, 13],
+    "energy_level": 4,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Muscular breed - kidney and heart monitoring needed",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["Kidney Disease", "Heart Disease", "Deafness", "Spinning/OCD"]
+  },
+  {
+    "breed": "Akita",
+    "size_category": "Large",
+    "lifespan_range": [10, 14],
+    "energy_level": 3,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Guardian breed - moderate exercise, monitor for bloat",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Hip Dysplasia", "PRA (Eyes)", "Hypothyroidism", "Bloat"]
+  },
+  {
+    "breed": "Miniature American Shepherd",
+    "size_category": "Small",
+    "lifespan_range": [12, 13],
+    "energy_level": 5,
+    "activity_budget_mins": 60,
+    "vitals_logic": "Herding breed - high energy, MDR1 sensitivity",
+    "vitals_baseline": {
+      "min_rhr": 100,
+      "max_rhr": 140,
+      "avg_srr": 22
+    },
+    "common_risks": ["Hip Dysplasia", "PRA (Eyes)", "MDR1 Sensitivity", "Cataracts"]
+  },
+  {
+    "breed": "Goldendoodle",
+    "size_category": "Large",
+    "lifespan_range": [10, 15],
+    "energy_level": 4,
+    "activity_budget_mins": 75,
+    "vitals_logic": "Hybrid breed - inherits risks from both parents",
+    "vitals_baseline": {
+      "min_rhr": 60,
+      "max_rhr": 100,
+      "avg_srr": 17
+    },
+    "common_risks": ["Hip Dysplasia", "Addison's Disease", "PRA (Eyes)", "Subaortic Stenosis"]
+  },
+  {
+    "breed": "Australian Cattle Dog",
+    "size_category": "Medium",
+    "lifespan_range": [12, 16],
+    "energy_level": 5,
+    "activity_budget_mins": 90,
+    "vitals_logic": "Working breed - extremely high exercise needs",
+    "vitals_baseline": {
+      "min_rhr": 80,
+      "max_rhr": 120,
+      "avg_srr": 22
+    },
+    "common_risks": ["PRA (Eyes)", "Deafness", "Hip Dysplasia", "Elbow Dysplasia"]
+  }
+]

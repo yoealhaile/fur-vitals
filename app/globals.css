@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Cubtale-inspired Playful Color Palette */
+  --background: #F0FDFA;
+  --foreground: #2d2d44;
+  --primary-teal: #4ecdc4;
+  --primary-lavender: #b399ff;
+  --primary-yellow: #ffd166;
+  --soft-teal: #a8e6cf;
+  --soft-lavender: #e6dcff;
+  --soft-yellow: #fff4d6;
+  --accent-coral: #ff9f9f;
+  --neutral-cream: #fffbf5;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .bubble-card {
+    @apply rounded-3xl shadow-lg border-2 border-white/50;
+  }
+  
+  .playful-shadow {
+    box-shadow: 0 8px 24px rgba(78, 205, 196, 0.12), 0 2px 8px rgba(179, 153, 255, 0.08);
+  }
+}
+
+/* Playful animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-wiggle:hover {
+  animation: wiggle 0.5s ease-in-out;
+}

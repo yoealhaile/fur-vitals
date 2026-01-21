@@ -1,0 +1,78 @@
+{
+    "dog_id": "malcolm_001",
+    "name": "Malcolm",
+    "breed": "Golden Retriever",
+    "chronological_age": 6.2,
+    "weight_lbs": 72,
+    "current_vitals": {
+      "heart_rate_bpm": 92,
+      "respiratory_rate_srr": 26,
+      "body_temp_f": 101.5,
+      "hrv_ms": 35,
+      "last_updated": "2026-01-21T08:30:00Z"
+    },
+    "behavioral_stats_today": {
+      "steps": 8400,
+      "active_minutes": 15,
+      "pacing_minutes_night": 5,
+      "vigilance_score": 1.2,
+      "high_impact_jumps": 2,
+      "barking_count": 12,
+      "last_meal_time": "2026-01-21T07:00:00Z",
+      "last_poop_time": "2026-01-21T06:30:00Z"
+    },
+    "recent_events": {
+      "last_meal": "2026-01-21T07:15:00Z",
+      "last_poop": "2026-01-21T06:45:00Z",
+      "last_sleep_end": "2026-01-21T06:00:00Z",
+      "last_walk": "2026-01-21T07:30:00Z",
+      "last_play": "2026-01-20T18:00:00Z"
+    },
+    "recent_activity": {
+      "last_meal_time": "2026-01-21T12:30:00Z",
+      "last_poop_time": "2026-01-21T09:15:00Z",
+      "last_sleep_end": "2026-01-21T07:00:00Z",
+      "last_active_session": "2026-01-21T08:00:00Z"
+    },
+    "historical_data_7d": [
+      { "date": "2026-01-20", "avg_rhr": 88, "avg_srr": 25, "sleep_hours": 12.5, "steps": 9200, "hrv": 50 },
+      { "date": "2026-01-19", "avg_rhr": 90, "avg_srr": 26, "sleep_hours": 13.0, "steps": 8800, "hrv": 48 },
+      { "date": "2026-01-18", "avg_rhr": 89, "avg_srr": 27, "sleep_hours": 11.0, "steps": 10500, "hrv": 47 },
+      { "date": "2026-01-17", "avg_rhr": 91, "avg_srr": 25, "sleep_hours": 14.0, "steps": 4000, "hrv": 51 },
+      { "date": "2026-01-16", "avg_rhr": 87, "avg_srr": 26, "sleep_hours": 12.0, "steps": 9000, "hrv": 49 },
+      { "date": "2026-01-15", "avg_rhr": 90, "avg_srr": 25, "sleep_hours": 13.5, "steps": 8500, "hrv": 48 },
+      { "date": "2026-01-14", "avg_rhr": 88, "avg_srr": 26, "sleep_hours": 12.8, "steps": 8700, "hrv": 50 }
+    ],
+    "sleep_analysis_last_night": {
+      "total_sleep_minutes": 740,
+      "deep_sleep_minutes": 320,
+      "rem_sleep_minutes": 180,
+      "wake_ups": 3,
+      "fragmentation_index": 2.1
+    },
+    "growth_history": [
+      { "age_months": 2, "weight_lbs": 18, "height_inches": 12 },
+      { "age_months": 6, "weight_lbs": 45, "height_inches": 18 },
+      { "age_months": 12, "weight_lbs": 65, "height_inches": 22 },
+      { "age_months": 15, "weight_lbs": 66.25, "height_inches": 22.25 },
+      { "age_months": 18, "weight_lbs": 67.5, "height_inches": 22.5 },
+      { "age_months": 21, "weight_lbs": 68.75, "height_inches": 22.75 },
+      { "age_months": 24, "weight_lbs": 70, "height_inches": 23 },
+      { "age_months": 36, "weight_lbs": 71, "height_inches": 23.5 },
+      { "age_months": 48, "weight_lbs": 72, "height_inches": 24 },
+      { "age_months": 60, "weight_lbs": 72, "height_inches": 24 },
+      { "age_months": 74, "weight_lbs": 72, "height_inches": 24 }
+    ],
+    "medical_records": {
+      "vaccines": [
+        { "name": "Rabies", "date": "2025-06-15", "status": "completed" },
+        { "name": "DHPP", "date": "2025-08-01", "status": "completed" },
+        { "name": "Leptospirosis", "date": "2025-08-01", "status": "completed" }
+      ],
+      "upcoming_reminders": [
+        { "type": "Deworming", "due_date": "2026-01-21", "status": "urgent" },
+        { "type": "Bordetella", "due_date": "2026-03-01", "status": "pending" },
+        { "type": "Annual Checkup", "due_date": "2026-06-15", "status": "pending" }
+      ]
+    }
+  }
