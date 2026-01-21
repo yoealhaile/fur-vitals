@@ -8,6 +8,7 @@ const quicksand = Quicksand({
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-quicksand',
   display: 'swap',
+  fallback: ['system-ui', 'arial'],
 });
 
 export const metadata: Metadata = {
