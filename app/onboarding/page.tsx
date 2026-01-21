@@ -222,6 +222,9 @@ export default function OnboardingPage() {
         connectedTrackers: connectedTrackers,
       }));
       localStorage.setItem('connectedTrackers', JSON.stringify(connectedTrackers));
+      
+      // Set cookie for server-side middleware check (prevents redirect flicker)
+      document.cookie = 'furvitals_onboarded=true; path=/; max-age=31536000; SameSite=Lax';
     }
     
     // Show email verification popup only once
