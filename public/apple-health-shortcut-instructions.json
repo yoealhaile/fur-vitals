@@ -1,0 +1,113 @@
+{
+  "name": "FurVitals Health Sync",
+  "version": "1.0",
+  "description": "Syncs Apple Health data to FurVitals dashboard",
+  "endpoint": "https://fur-vitals.vercel.app/api/health/apple",
+  "requiredPermissions": [
+    "Steps (Read)",
+    "Active Energy (Read)",
+    "Heart Rate (Read - Optional)",
+    "Sleep Analysis (Read - Optional)"
+  ],
+  "shortcutActions": [
+    {
+      "step": 1,
+      "action": "Get Current Date",
+      "description": "Gets today's date"
+    },
+    {
+      "step": 2,
+      "action": "Format Date",
+      "description": "Format as YYYY-MM-DD",
+      "format": "custom",
+      "formatString": "YYYY-MM-DD"
+    },
+    {
+      "step": 3,
+      "action": "Find Health Samples",
+      "description": "Get today's step count",
+      "type": "Step Count",
+      "timeRange": "Today"
+    },
+    {
+      "step": 4,
+      "action": "Calculate Statistics",
+      "description": "Sum all steps",
+      "operation": "Sum"
+    },
+    {
+      "step": 5,
+      "action": "Set Variable",
+      "description": "Store steps in variable",
+      "variableName": "Steps"
+    },
+    {
+      "step": 6,
+      "action": "Find Health Samples",
+      "description": "Get active energy burned",
+      "type": "Active Energy Burned",
+      "timeRange": "Today"
+    },
+    {
+      "step": 7,
+      "action": "Calculate Statistics",
+      "description": "Sum active calories",
+      "operation": "Sum"
+    },
+    {
+      "step": 8,
+      "action": "Calculate",
+      "description": "Convert calories to minutes (divide by 5)",
+      "operation": "÷",
+      "value": 5
+    },
+    {
+      "step": 9,
+      "action": "Set Variable",
+      "description": "Store active minutes",
+      "variableName": "ActiveMinutes"
+    },
+    {
+      "step": 10,
+      "action": "Dictionary",
+      "description": "Build JSON payload",
+      "keys": {
+        "steps": "{{Steps}}",
+        "activeMinutes": "{{ActiveMinutes}}",
+        "date": "{{FormattedDate}}",
+        "deviceId": "iPhone"
+      }
+    },
+    {
+      "step": 11,
+      "action": "Get Contents of URL",
+      "description": "POST data to FurVitals",
+      "url": "https://fur-vitals.vercel.app/api/health/apple",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "requestBody": "Dictionary"
+    },
+    {
+      "step": 12,
+      "action": "Show Notification",
+      "description": "Confirm sync",
+      "title": "FurVitals Sync Complete",
+      "body": "✅ Your health data has been synced!"
+    }
+  ],
+  "automationSetup": {
+    "trigger": "Time of Day",
+    "recommendedTime": "21:00 (9 PM)",
+    "frequency": "Daily",
+    "runImmediately": false
+  },
+  "testingSteps": [
+    "Run shortcut manually",
+    "Check for success notification",
+    "Open FurVitals app",
+    "Navigate to Medical Center → Wearables",
+    "Verify 'Apple Health: Connected' status"
+  ]
+}

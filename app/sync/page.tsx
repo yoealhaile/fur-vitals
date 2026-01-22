@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Bluetooth, CheckCircle, Loader, Radio, Shield, FileText, Plus, Edit, Trash2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Bluetooth, CheckCircle, Loader, Radio, Shield, FileText, Plus, Edit, Trash2, Smartphone, Download, Apple } from 'lucide-react';
 import BottomNav from '@/components/BottomNav';
 import { useApp } from '@/context/AppContext';
 
@@ -24,7 +24,10 @@ export default function SyncPage() {
   const { dogData, updateDogData, connectedTrackers: globalTrackers, setConnectedTrackers: setGlobalTrackers } = useApp();
   const [connectingTo, setConnectingTo] = useState<string | null>(null);
   const connectedTrackers = globalTrackers; // Use global state
-  const [activeTab, setActiveTab] = useState<'trackers' | 'medical' | 'insurance'>('medical');
+  const [activeTab, setActiveTab] = useState<'trackers' | 'medical' | 'insurance' | 'wearables'>('wearables');
+  const [googleFitConnected, setGoogleFitConnected] = useState(false);
+  const [appleHealthConnected, setAppleHealthConnected] = useState(false);
+  const [showAppleInstructions, setShowAppleInstructions] = useState(false);
   const [showAddInsurance, setShowAddInsurance] = useState(false);
   const [insurance, setInsurance] = useState<Insurance>({
     provider: '',
@@ -71,6 +74,46 @@ export default function SyncPage() {
     setGlobalTrackers(connectedTrackers.filter((id) => id !== trackerId));
   };
 
+  // Check for Google Fit and Apple Health connection status
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Check cookies for connection status
+      const googleFit = document.cookie.includes('google_fit_connected=true');
+      const appleHealth = document.cookie.includes('apple_health_connected=true');
+      setGoogleFitConnected(googleFit);
+      setAppleHealthConnected(appleHealth);
+    }
+  }, []);
+
+  // Handle Google Fit connection
+  const handleGoogleFitConnect = () => {
+    window.location.href = '/api/auth/google';
+  };
+
+  // Handle Google Fit disconnect
+  const handleGoogleFitDisconnect = async () => {
+    try {
+      await fetch('/api/health/google', { method: 'DELETE' });
+      setGoogleFitConnected(false);
+      alert('Google Fit disconnected successfully');
+    } catch (error) {
+      console.error('Failed to disconnect Google Fit:', error);
+      alert('Failed to disconnect Google Fit');
+    }
+  };
+
+  // Handle Apple Health disconnect
+  const handleAppleHealthDisconnect = async () => {
+    try {
+      await fetch('/api/health/apple', { method: 'DELETE' });
+      setAppleHealthConnected(false);
+      alert('Apple Health disconnected successfully');
+    } catch (error) {
+      console.error('Failed to disconnect Apple Health:', error);
+      alert('Failed to disconnect Apple Health');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-purple-50 to-pink-50 pb-24">
       {/* Header */}
@@ -89,10 +132,20 @@ export default function SyncPage() {
           </div>
           
           {/* Tab Navigation */}
-          <div className="flex gap-2 mt-4">
+          <div className="flex gap-2 mt-4 overflow-x-auto">
+            <button
+              onClick={() => setActiveTab('wearables')}
+              className={`flex-1 py-2 px-4 rounded-full font-bold text-sm transition-all whitespace-nowrap ${
+                activeTab === 'wearables'
+                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
+                  : 'bg-white/60 text-gray-600 hover:bg-white'
+              }`}
+            >
+              📱 Wearables
+            </button>
             <button
               onClick={() => setActiveTab('medical')}
-              className={`flex-1 py-2 px-4 rounded-full font-bold text-sm transition-all ${
+              className={`flex-1 py-2 px-4 rounded-full font-bold text-sm transition-all whitespace-nowrap ${
                 activeTab === 'medical'
                   ? 'bg-gradient-to-r from-cyan-500 to-teal-500 text-white shadow-lg'
                   : 'bg-white/60 text-gray-600 hover:bg-white'
@@ -102,7 +155,7 @@ export default function SyncPage() {
             </button>
             <button
               onClick={() => setActiveTab('insurance')}
-              className={`flex-1 py-2 px-4 rounded-full font-bold text-sm transition-all ${
+              className={`flex-1 py-2 px-4 rounded-full font-bold text-sm transition-all whitespace-nowrap ${
                 activeTab === 'insurance'
                   ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
                   : 'bg-white/60 text-gray-600 hover:bg-white'
@@ -112,13 +165,13 @@ export default function SyncPage() {
             </button>
             <button
               onClick={() => setActiveTab('trackers')}
-              className={`flex-1 py-2 px-4 rounded-full font-bold text-sm transition-all ${
+              className={`flex-1 py-2 px-4 rounded-full font-bold text-sm transition-all whitespace-nowrap ${
                 activeTab === 'trackers'
                   ? 'bg-gradient-to-r from-teal-500 to-purple-500 text-white shadow-lg'
                   : 'bg-white/60 text-gray-600 hover:bg-white'
               }`}
             >
-              📱 Trackers
+              🐾 Dog Trackers
             </button>
           </div>
         </div>
@@ -126,6 +179,187 @@ export default function SyncPage() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Wearables Tab - Google Fit & Apple Health */}
+        {activeTab === 'wearables' && (
+          <div className="space-y-6">
+            {/* Info Banner */}
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl border-2 border-blue-300 p-6">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-blue-200 rounded-xl">
+                  <Smartphone className="w-6 h-6 text-blue-700" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-blue-900 mb-2">Sync Your Health Data</h3>
+                  <p className="text-sm text-gray-700">
+                    Connect Google Fit or Apple Health to automatically sync your activity data and improve {dogData?.name || 'your dog'}'s wellness tracking.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Google Fit Card */}
+            <div className="bg-white rounded-3xl shadow-lg border-2 border-white/50 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-400 to-yellow-400 rounded-2xl flex items-center justify-center text-3xl shadow-md">
+                    🏃
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">Google Fit</h3>
+                    <p className="text-sm text-gray-600">Track steps, activity & heart rate</p>
+                  </div>
+                </div>
+                {googleFitConnected && (
+                  <div className="px-3 py-1 bg-green-100 rounded-full flex items-center gap-2 border-2 border-green-300">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <span className="text-xs font-bold text-green-700">Connected</span>
+                  </div>
+                )}
+              </div>
+
+              <p className="text-sm text-gray-700 mb-4">
+                {googleFitConnected 
+                  ? 'Your Google Fit data is syncing automatically. Activity and health metrics will update daily.' 
+                  : 'Connect your Google account to sync activity data from Google Fit, including steps, active minutes, and heart rate data.'}
+              </p>
+
+              {googleFitConnected ? (
+                <div className="space-y-3">
+                  <div className="p-4 bg-green-50 rounded-2xl border-2 border-green-200">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-bold text-gray-900">Last Sync</p>
+                        <p className="text-xs text-gray-600">Just now</p>
+                      </div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleGoogleFitDisconnect}
+                    className="w-full py-3 rounded-full border-2 border-red-300 bg-red-50 hover:bg-red-100 text-red-700 font-bold transition-all"
+                  >
+                    Disconnect Google Fit
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={handleGoogleFitConnect}
+                  className="w-full py-3 rounded-full bg-gradient-to-r from-red-500 to-yellow-500 hover:from-red-600 hover:to-yellow-600 text-white font-bold transition-all shadow-md flex items-center justify-center gap-2"
+                >
+                  <Smartphone className="w-5 h-5" />
+                  Connect Google Fit
+                </button>
+              )}
+            </div>
+
+            {/* Apple Health Card */}
+            <div className="bg-white rounded-3xl shadow-lg border-2 border-white/50 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-16 h-16 bg-gradient-to-br from-pink-400 to-red-400 rounded-2xl flex items-center justify-center text-3xl shadow-md">
+                    ❤️
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">Apple Health</h3>
+                    <p className="text-sm text-gray-600">iOS Shortcuts integration</p>
+                  </div>
+                </div>
+                {appleHealthConnected && (
+                  <div className="px-3 py-1 bg-green-100 rounded-full flex items-center gap-2 border-2 border-green-300">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <span className="text-xs font-bold text-green-700">Connected</span>
+                  </div>
+                )}
+              </div>
+
+              <p className="text-sm text-gray-700 mb-4">
+                {appleHealthConnected 
+                  ? 'Your Apple Health data is syncing via Shortcuts. Data will update when you run the shortcut.' 
+                  : 'Connect Apple Health using our iOS Shortcut to sync your activity data automatically.'}
+              </p>
+
+              {appleHealthConnected ? (
+                <div className="space-y-3">
+                  <div className="p-4 bg-green-50 rounded-2xl border-2 border-green-200">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-bold text-gray-900">Last Sync</p>
+                        <p className="text-xs text-gray-600">Today</p>
+                      </div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleAppleHealthDisconnect}
+                    className="w-full py-3 rounded-full border-2 border-red-300 bg-red-50 hover:bg-red-100 text-red-700 font-bold transition-all"
+                  >
+                    Disconnect Apple Health
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <button
+                    onClick={() => setShowAppleInstructions(!showAppleInstructions)}
+                    className="w-full py-3 rounded-full bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-bold transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <Apple className="w-5 h-5" />
+                    Connect Apple Health
+                  </button>
+
+                  {showAppleInstructions && (
+                    <div className="p-4 bg-blue-50 rounded-2xl border-2 border-blue-200">
+                      <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                        <Download className="w-5 h-5" />
+                        Setup Instructions
+                      </h4>
+                      <ol className="space-y-2 text-sm text-gray-700 mb-4">
+                        <li className="flex gap-2">
+                          <span className="font-bold text-blue-600">1.</span>
+                          <span>Open Safari on your iPhone</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="font-bold text-blue-600">2.</span>
+                          <span>Download the FurVitals shortcut below</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="font-bold text-blue-600">3.</span>
+                          <span>Tap "Add Shortcut" when prompted</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="font-bold text-blue-600">4.</span>
+                          <span>Run the shortcut daily to sync your health data</span>
+                        </li>
+                      </ol>
+                      <a
+                        href="/apple-health-shortcut.shortcut"
+                        download
+                        className="w-full py-3 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-bold transition-all shadow-md flex items-center justify-center gap-2"
+                      >
+                        <Download className="w-5 h-5" />
+                        Download FurVitals Shortcut
+                      </a>
+                      <p className="text-xs text-gray-600 mt-3 text-center">
+                        The shortcut will send your activity data securely to FurVitals
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Data Privacy Notice */}
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl border-2 border-purple-200 p-6">
+              <h3 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
+                <Shield className="w-5 h-5" />
+                Your Data is Secure
+              </h3>
+              <p className="text-sm text-gray-700">
+                We only access activity and health metrics. Your data is encrypted and never shared with third parties. You can disconnect at any time.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Medical History Tab */}
         {activeTab === 'medical' && (
           <div className="space-y-6">
